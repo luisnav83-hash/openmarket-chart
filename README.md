@@ -8,6 +8,10 @@ comportamiento, con **código propio** (no se ha copiado código propietario) y
 - **App publicada:** https://luisnav83-hash.github.io/openmarket-chart/
 - **Repositorio:** https://github.com/luisnav83-hash/openmarket-chart
 - **Original analizado:** https://openmarket.xyz/chart/r8e6KKi7
+- 🔗 **Proyecto hermano:** [**Bar Replay Pro**](https://luisnav83-hash.github.io/bar-replay-pro/) ·
+  backtesting **vela a vela** con velas reales de Binance, operativa simulada y
+  estadísticas (win rate, profit factor, drawdown) —
+  [código](https://github.com/luisnav83-hash/bar-replay-pro)
 
 ![Comparativa 1920×1080](docs/comparativas/comparativa-1920x1080.png)
 
