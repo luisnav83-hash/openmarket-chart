@@ -1,0 +1,23 @@
+{
+  "name": "openmarket-chart-clone",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Terminal de gráficos estilo OpenMarket reconstruido desde cero con React + Vite (mismo layout, medidas, tokens y comportamiento; datos ficticios locales)",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "verify": "node tools/sizes.js && node tools/interact.js"
+  },
+  "dependencies": {
+    "lightweight-charts": "^4.2.0",
+    "lucide-react": "^0.451.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.3",
+    "vite": "^5.4.10"
+  }
+}

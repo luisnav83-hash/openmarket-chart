@@ -1,0 +1,81 @@
+/* =========================================================================
+ * tokens.css — Sistema de diseño medido sobre la interfaz original
+ * (valores extraídos del DOM renderizado, no estimados a ojo)
+ * =======================================================================*/
+:root {
+  /* --- Superficies --- */
+  --bg-app: #121214;          /* body            rgb(18,18,20)  */
+  --bg-header: #121215;       /* header          rgb(18,18,21)  */
+  --bg-surface: #202126;      /* barras/pestañas rgb(32,33,38)  */
+  --bg-surface-2: #292a2f;    /* hover de control               */
+  --bg-surface-3: #303135;    /* leyenda/paneles                */
+  --bg-footer: #191a1e;       /* footer          rgb(25,26,30)  */
+  --bg-sheet: #0f0d0c;        /* hoja móvil      rgb(15,13,12)  */
+  --bg-elevated: #1a1b1f;     /* menús desplegables             */
+
+  /* --- Texto --- */
+  --text: #c8ccd1;
+  --text-strong: #ffffff;
+  --text-dim: #8f8f8f;
+  --text-faint: #6b6f76;
+  --text-mono: #d7dbe0;
+
+  /* --- Acentos --- */
+  --accent: #d97757;          /* naranja quemado (hover/activos) */
+  --accent-brand: #ff6a00;    /* Color-Orange-60 del original    */
+  --accent-brand-2: #ff4608;  /* Color-Orange-80                 */
+  --accent-soft: rgba(217, 119, 87, 0.14);
+  --warn: #ffb020;
+  --ok: #22c55e6;
+
+  /* --- Velas / gráfico --- */
+  --up: #c8ccd1;
+  --down: #d27a61;
+  --grid: #1e1f23;
+  --grid-strong: #222f42;
+  --crosshair: #4a4d55;
+  --trendline: #ff003c;
+  --bb-line: #5188ce;
+  --bb-fill: rgba(23, 27, 34, 0.55);
+  --ema20: #e8a33d;
+  --ema50: #cbb04a;
+  --pill-bg: #222222;
+
+  /* --- Bordes --- */
+  --line: #2a2b30;
+  --line-soft: #232429;
+
+  /* --- Radios --- */
+  --r-xs: 4px;
+  --r-sm: 6px;
+  --r-md: 8px;
+  --r-lg: 10px;
+  --r-sheet: 14px;
+  --r-full: 999px;
+
+  /* --- Sombras --- */
+  --shadow-menu: 0 8px 24px rgba(0, 0, 0, 0.55), 0 1px 0 rgba(255, 255, 255, 0.03) inset;
+  --shadow-pill: 0 2px 8px rgba(0, 0, 0, 0.45);
+
+  /* --- Tipografía --- */
+  --font-ui: Inter, -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Roboto Mono', ui-monospace, Menlo, monospace;
+
+  /* --- Estructura (medidas del original) --- */
+  --h-header: 40px;
+  --h-banner: 40px;
+  --h-toolbar: 44px;
+  --h-footer: 36px;
+  --h-footer-mobile: 50px;
+  --w-rail: 52px;
+  --w-price-axis: 84px;
+
+  /* --- z-index (escala del original) --- */
+  --z-sticky: 1000;
+  --z-dropdown: 1000;
+  --z-popover: 2000;
+  --z-modal: 5000;
+  --z-overlay: 9000;
+  --z-toast: 9500;
+  --z-context: 10000;
+}

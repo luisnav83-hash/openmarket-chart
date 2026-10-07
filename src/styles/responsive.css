@@ -1,0 +1,102 @@
+/* =========================================================================
+ * responsive.css — adaptación por tamaño (medida sobre el original)
+ *   1920 / 1440 / 1366 → completo     · 1024 → se recortan estadísticas
+ *   768 → compacto                    · 430 / 375 → móvil con hoja inferior
+ * =======================================================================*/
+
+/* --- ≤1560: solo se estrechan los márgenes (las 4 cifras siguen) --- */
+@media (max-width: 1560px) {
+  .tb-stats { gap: 18px; }
+}
+
+/* --- ≤1366: márgenes más cortos y panel lateral algo menor --- */
+@media (max-width: 1366px) {
+  .tb-stats { gap: 14px; }
+  .side-panel { width: 268px; flex-basis: 268px; }
+}
+
+/* --- ≤1180: estadísticas del centro comprimidas (se conservan) --- */
+@media (max-width: 1180px) {
+  .tb-stats { gap: 12px; }
+  .tb-stat--funding { display: none; }
+  .global-nav__logo .brand { font-size: 14px; }
+}
+
+/* --- ≤1024: barra y cabecera más apretadas --- */
+@media (max-width: 1024px) {
+  .tb-stat--oi { display: none; }
+  .tb-symbol__meta { display: none; }
+  .tb-symbol { padding: 0 8px; gap: 6px; }
+  .tb-chip--layout { display: none; }
+  .tb-indicators { padding: 0 8px; }
+  .chart-toolbar { gap: 4px; }
+  .side-panel { width: 240px; flex-basis: 240px; }
+  .legend-title .name { display: none; }
+}
+
+/* --- ≤900: se ocultan el panel lateral y el chip de tipo de gráfico --- */
+@media (max-width: 900px) {
+  .tb-chip--charttype-label { display: none; }
+  .side-panel { display: none; }
+  .ohlc-legend { max-width: 70%; }
+  .tb-stats { gap: 9px; }
+}
+
+/* --- ≤768: modo tablet/móvil (medido en 768×1024) --- */
+@media (max-width: 768px) {
+  :root { --w-rail: 40px; --w-price-axis: 72px; }
+  .global-nav { padding: 0 8px; gap: 6px; }
+  .workspace-tabs { display: none; }
+  .top-bar-layouts__btn { width: 36px; }
+  .tier-banner { font-size: 11px; gap: 6px; }
+  .tier-banner__note { display: none; }
+  .tb-super-search { width: 36px; height: 36px; }
+  .interval-btn { min-width: 28px; padding: 0 7px; font-size: 11.5px; }
+  .tb-right .icon-btn--lg:nth-child(-n + 2) { display: none; }
+  .tb-stats { display: none; }             /* en móvil desaparecen las estadísticas 24h */
+  .tool-rail__btn { width: 32px; height: 30px; }
+  .chart-controls { bottom: 6px; }
+  .ohlc-legend { font-size: 11.5px; max-width: 78%; }
+  /* Medido en el original: el pie sigue midiendo 36 px también en móvil */
+  .footer { height: var(--h-footer); flex-basis: var(--h-footer); }
+  .footer__left { display: none; }
+  .footer__right { margin-left: 0; width: 100%; justify-content: space-between; }
+}
+
+/* --- ≤600: móvil real (medido en 430×932 y 375×812) --- */
+@media (max-width: 600px) {
+  :root { --w-rail: 32px; --w-price-axis: 64px; --h-banner: 36px; }
+  .guest-pill span.label { display: none; }
+  .guest-pill { padding: 0 7px; height: 24px; }
+  .tb-symbol { height: 34px; }
+  .tb-symbol__ticker { font-size: 12px; }
+  .tb-chip--layout, .tb-chip--charttype { display: none; }
+  .tb-indicators { height: 30px; padding: 0 6px; }
+  .tb-indicators .tb-indicators__label { display: none; }
+  .tb-panels { padding: 0 7px; }
+  .tool-rail { padding: 4px 0; }
+  .tool-rail__btn { width: 28px; height: 28px; }
+  .ohlc-legend { top: 6px; left: 8px; font-size: 11px; max-width: 84%; }
+  .legend-title { font-size: 12px; }
+  .legend-ohlc { gap: 7px; }
+  .chart-watermark { display: none; }
+  .toasts { right: 8px; left: 8px; bottom: calc(var(--h-footer) + 10px); }
+  .toast { max-width: none; }
+}
+
+/* --- ≤420: píldoras y textos al mínimo --- */
+@media (max-width: 420px) {
+  :root { --w-rail: 30px; --w-price-axis: 60px; }
+  .interval-btn { min-width: 26px; padding: 0 5px; }
+  .tb-symbol__ex .ex-name { display: none; }
+  .chart-controls { transform: none; left: 6px; }
+}
+
+/* El ordenador manda: aviso solo cuando la pantalla es pequeña */
+.mobile-only { display: none; }
+@media (max-width: 768px) {
+  .mobile-only { display: initial; }
+}
+
+/* Sin scroll horizontal accidental en ningún tamaño */
+html, body, #app { max-width: 100vw; overflow-x: hidden; }

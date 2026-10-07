@@ -1,0 +1,109 @@
+/* =========================================================================
+ * panels.css — paneles laterales (watchlist, libro, cintas, chat, objetos)
+ * y paneles inferiores de indicadores (RSI / MACD)
+ * =======================================================================*/
+
+/* ---------- Paneles inferiores de indicadores ---------- */
+.panes-stack {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  display: flex; flex-direction: column;
+  z-index: 2;
+}
+.indicator-pane {
+  position: relative;
+  flex: 0 0 auto;
+  border-top: 1px solid var(--line-soft);
+  background: var(--bg-app);
+  overflow: hidden;
+}
+.pane-label {
+  position: absolute; top: 6px; left: 10px; z-index: 3;
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; color: var(--text-dim);
+  pointer-events: none;
+}
+.pane-label .legend-swatch, .pane-label .swatch {
+  width: 9px; height: 2px; border-radius: 1px; background: var(--accent);
+}
+.pane-values { color: var(--text); font-family: var(--font-mono); font-size: 11px; }
+.pane-canvas { position: absolute; inset: 0; }
+
+/* ---------- Watchlist ---------- */
+.wl-head-row {
+  display: grid; grid-template-columns: 1fr auto auto;
+  gap: 8px; padding: 0 7px 6px;
+  font-size: 9px; font-weight: 600; letter-spacing: 0.05em;
+  color: var(--text-faint); text-transform: uppercase;
+}
+
+/* ---------- Libro de órdenes ---------- */
+.ob-head, .tape-head {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px; padding: 0 7px 4px;
+  font-size: 9px; font-weight: 600; letter-spacing: 0.05em;
+  color: var(--text-faint); text-transform: uppercase;
+}
+.ob-row .amt, .ob-row .tot { text-align: right; }
+.ob-spread {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 5px 7px; margin: 4px 0;
+  border-top: 1px solid var(--line-soft);
+  border-bottom: 1px solid var(--line-soft);
+  font-family: var(--font-mono); font-size: 11.5px; color: var(--text);
+}
+.ob-ask-group { display: flex; flex-direction: column-reverse; }
+
+/* ---------- Cintas de operaciones ---------- */
+.tape-row .time { color: var(--text-faint); }
+.tape-row .px { text-align: right; }
+.tape-row .amt { text-align: right; color: var(--text-dim); }
+.tape-row.buy .px { color: #7ac77e; }
+.tape-row.sell .px { color: var(--down); }
+
+/* ---------- Chat del gráfico ---------- */
+.chat-list { display: flex; flex-direction: column; gap: 9px; padding: 4px 2px; }
+.chat-msg { display: flex; gap: 8px; }
+.chat-avatar {
+  width: 22px; height: 22px; border-radius: 50%; flex: 0 0 auto;
+  display: grid; place-items: center;
+  font-size: 9.5px; font-weight: 700; color: #14151a;
+}
+.chat-body { min-width: 0; }
+.chat-meta { display: flex; align-items: baseline; gap: 6px; }
+.chat-user { font-size: 11.5px; font-weight: 600; color: var(--text); }
+.chat-time { font-size: 9.5px; color: var(--text-faint); }
+.chat-text { font-size: 12px; color: var(--text-dim); margin-top: 1px; }
+.chat-composer {
+  display: flex; gap: 6px; padding: 8px 6px 4px;
+  border-top: 1px solid var(--line-soft);
+}
+.chat-composer input {
+  flex: 1 1 auto; height: 30px; padding: 0 9px;
+  background: var(--bg-app); border: 1px solid var(--line);
+  border-radius: var(--r-sm); font-size: 12px; outline: none;
+}
+.chat-composer input:focus { border-color: #3b3d44; }
+
+/* ---------- Objetos / dibujos ---------- */
+.obj-row {
+  display: flex; align-items: center; gap: 8px;
+  padding: 5px 7px; border-radius: var(--r-sm);
+  font-size: 11.5px;
+}
+.obj-row:hover { background: var(--bg-surface-2); }
+.obj-row.is-hidden .obj-name { color: var(--text-faint); text-decoration: line-through; }
+.obj-name { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.obj-swatch { width: 10px; height: 3px; border-radius: 2px; flex: 0 0 auto; }
+.obj-btn { width: 22px; height: 22px; display: grid; place-items: center; border-radius: var(--r-xs); color: var(--text-faint); }
+.obj-btn:hover { background: var(--bg-surface-3); color: var(--text); }
+.obj-empty { padding: 14px 8px; font-size: 11.5px; color: var(--text-faint); text-align: center; line-height: 1.5; }
+.obj-toolbar { display: flex; gap: 6px; padding: 6px; }
+
+/* ---------- Hueco libre del gráfico en modo 2 paneles ---------- */
+.chart-duo {
+  flex: 1 1 auto; min-height: 0; min-width: 0;
+  display: flex; flex-direction: column; gap: 1px;
+  background: var(--line-soft);
+}
+.chart-duo .chart-area { flex: 1 1 0; }
+.chart-duo.split-2v { flex-direction: row; }

@@ -1,0 +1,131 @@
+/* =========================================================================
+ * base.css — reset, tipografía base y controles genéricos
+ * =======================================================================*/
+* { box-sizing: border-box; }
+
+html, body, #app {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg-app);
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  line-height: 1.35;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;                 /* la app no hace scroll global */
+}
+
+#app { display: flex; flex-direction: column; }
+
+button {
+  font-family: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+input {
+  font-family: inherit;
+  color: inherit;
+}
+
+a { color: var(--accent); text-decoration: none; }
+
+/* Los números siempre en monoespaciada, como el original */
+.mono, .num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* --- Utilidades compartidas --- */
+.row { display: flex; align-items: center; }
+.spacer { flex: 1 1 auto; min-width: 0; }
+.truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dim { color: var(--text-dim); }
+.strong { color: var(--text-strong); }
+
+/* Separadores verticales finos entre grupos de la barra superior */
+.sep {
+  width: 1px;
+  height: 18px;
+  background: var(--line);
+  margin: 0 7px;
+  flex: 0 0 auto;
+}
+
+/* --- Botón de icono genérico (28/30/32px) --- */
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--r-sm);
+  color: var(--text-dim);
+  transition: background 0.12s ease, color 0.12s ease;
+}
+.icon-btn:hover { background: var(--bg-surface-2); color: var(--text); }
+.icon-btn.is-active { color: var(--accent); background: var(--accent-soft); }
+.icon-btn--sm { width: 26px; height: 26px; }
+.icon-btn--lg { width: 32px; height: 32px; }
+
+/* --- Píldoras / chips --- */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 22px;
+  padding: 0 9px;
+  border-radius: var(--r-full);
+  background: var(--bg-surface);
+  color: var(--text-dim);
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.pill--accent { background: var(--accent-soft); color: var(--accent); }
+.pill--ghost { background: rgba(255, 255, 255, 0.04); }
+
+/* --- Botones con texto (Save a copy, Continue Anyway…) --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 12px;
+  border-radius: var(--r-md);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--line);
+  transition: background 0.12s ease, border-color 0.12s ease;
+}
+.btn:hover { background: rgba(255, 255, 255, 0.14); }
+.btn--primary { background: #f4f4f4; color: #131313; border-color: transparent; font-weight: 700; }
+.btn--primary:hover { background: #ffffff; }
+.btn--block { width: 100%; height: 38px; font-size: 13px; }
+
+/* Scrollbars finas, al estilo del original */
+* { scrollbar-width: thin; scrollbar-color: #3a3c42 transparent; }
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-thumb { background: #3a3c42; border-radius: 8px; }
+*::-webkit-scrollbar-track { background: transparent; }
+
+/* Animaciones discretas */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(2px); } to { opacity: 1; transform: none; } }
+@keyframes sheetUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+.fade-in { animation: fadeIn 0.14s ease both; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001s !important; transition-duration: 0.001s !important; }
+}
