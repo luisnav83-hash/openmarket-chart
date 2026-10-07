@@ -1,5 +1,6 @@
 /** sizes.js — medidas del clon en los 7 tamaños del reconocimiento. */
 const puppeteer = (await import('/home/user/.cache/pptr/node_modules/puppeteer/lib/esm/puppeteer/puppeteer.js')).default;
+const URL_ = process.argv[2] || 'http://127.0.0.1:5173/';
 const SIZES = [[1920,1080],[1440,900],[1366,768],[1024,768],[768,1024],[430,932],[375,812]];
 const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox', '--disable-dev-shm-usage'] });
 const out = [];
@@ -9,7 +10,7 @@ for (const [w, h] of SIZES) {
   const errs = [];
   page.on('pageerror', (e) => errs.push(e.message));
   page.on('console', (m) => { if (m.type() === 'error') errs.push(m.text()); });
-  await page.goto('http://127.0.0.1:5173/', { waitUntil: 'networkidle2', timeout: 40000 });
+  await page.goto(URL_, { waitUntil: 'networkidle2', timeout: 60000 });
   await new Promise((r) => setTimeout(r, 1800));
   const m = await page.evaluate(() => {
     const b = (s) => { const e = document.querySelector(s); if (!e) return null; const r = e.getBoundingClientRect(); return [Math.round(r.x), Math.round(r.y), Math.round(r.width), Math.round(r.height)]; };
@@ -29,6 +30,8 @@ for (const [w, h] of SIZES) {
   await page.close();
 }
 await browser.close();
+console.log('URL:', URL_);
+const j = (v) => (v ? v.join(',') : 'ausente');
 for (const r of out) {
-  console.log(`${r.size.padEnd(9)} header=${r.header.join(',')} banner=${r.banner.join(',')} toolbar=${r.toolbar.join(',')} rail=${r.rail.join(',')} chart=${r.chart.join(',')} footer=${r.footer.join(',')} sheet=${r.sheet} stats=${r.hStats} pills=${r.pills} scrollX=${r.scrollX} errores=${r.errs.length}`);
+  console.log(`${r.size.padEnd(9)} header=${j(r.header)} banner=${j(r.banner)} toolbar=${j(r.toolbar)} rail=${j(r.rail)} chart=${j(r.chart)} footer=${j(r.footer)} sheet=${r.sheet} stats=${r.hStats} pills=${r.pills} scrollX=${r.scrollX} errores=${r.errs.length}`);
 }

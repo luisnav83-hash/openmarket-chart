@@ -4,6 +4,7 @@
  * cualquier error de consola o si algún paso no surte efecto.
  */
 const puppeteer = (await import('/home/user/.cache/pptr/node_modules/puppeteer/lib/esm/puppeteer/puppeteer.js')).default;
+const URL_ = process.argv[2] || 'http://127.0.0.1:5173/';
 const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox', '--disable-dev-shm-usage'] });
 const page = await browser.newPage();
 await page.setViewport({ width: 1600, height: 900 });
@@ -14,7 +15,7 @@ page.on('console', (m) => { if (m.type() === 'error') errs.push(m.text()); });
 const log = [];
 const check = (name, ok, extra = '') => log.push(`${ok ? '✓' : '✗'} ${name}${extra ? ' · ' + extra : ''}`);
 
-await page.goto('http://127.0.0.1:5173/', { waitUntil: 'networkidle2', timeout: 40000 });
+await page.goto(URL_, { waitUntil: 'networkidle2', timeout: 60000 });
 await new Promise((r) => setTimeout(r, 2500));
 
 // 1. Paleta ⌘K y cambio de símbolo
@@ -122,6 +123,7 @@ check('el rail vuelve al puntero tras Esc', await page.evaluate(() => !!document
 
 await page.screenshot({ path: 'docs/clon-interaccion.png' });
 await browser.close();
+console.log('URL:', URL_);
 console.log(log.join('\n'));
 console.log(`\nerrores de consola: ${errs.length}`);
 errs.slice(0, 8).forEach((e) => console.log('   ', e));

@@ -5,6 +5,10 @@ Terminal de gráficos **reconstruido desde cero** a partir del análisis del ori
 comportamiento, con **código propio** (no se ha copiado código propietario) y
 **datos ficticios generados en local** (sin API keys, sin conectar cuentas).
 
+- **App publicada:** https://luisnav83-hash.github.io/openmarket-chart/
+- **Repositorio:** https://github.com/luisnav83-hash/openmarket-chart
+- **Original analizado:** https://openmarket.xyz/chart/r8e6KKi7
+
 ![Comparativa 1920×1080](docs/comparativas/comparativa-1920x1080.png)
 
 ---
@@ -120,14 +124,28 @@ comentario que lo indica.
 - La tipografía usa las familias del original (Inter, JetBrains Mono) vía Google
   Fonts; sin red se degrada a las fuentes del sistema.
 
+## Publicación (GitHub Pages)
+
+- La **fuente** vive en la rama `main`; el **bundle** compilado, en la rama
+  `gh-pages` (raíz), que es la que sirve Pages en modo legacy.
+- `vite.config.js` usa `base: './'`, de modo que las mismas rutas funcionan en
+  local y bajo la subruta `/openmarket-chart/` de Pages.
+- Para republicar después de un cambio:
+
+```bash
+npm run build                       # genera dist/
+# copia dist/ a una rama gh-pages limpia (con .nojekyll) y empuja
+```
+
 ## Verificación (navegador real)
 
 ```bash
-npm run verify                                  # 7 tamaños + recorrido funcional
-node tools/probe.js 1920 1080 /tmp/shot.png      # medidas + errores de consola
-node tools/sizes.js                              # los 7 tamaños de una pasada
-node tools/interact.js                           # paleta, símbolos, menús, paneles, dibujo
-node tools/shots.js                              # capturas en docs/
+npm run verify                                        # 7 tamaños + recorrido funcional (local)
+node tools/sizes.js  https://luisnav83-hash.github.io/openmarket-chart/   # los 7 tamaños en la versión publicada
+node tools/interact.js https://luisnav83-hash.github.io/openmarket-chart/ # recorrido funcional en la versión publicada
+node tools/pages-check.js                             # medidas + 0 errores en Pages
+node tools/probe.js 1920 1080 /tmp/shot.png            # medidas de una franja concreta
+node tools/shots.js                                    # capturas en docs/
 ```
 
 Estado actual de la verificación:
@@ -139,6 +157,10 @@ Estado actual de la verificación:
   activación del MACD en panel inferior sincronizado, creación de un dibujo y
   borrado con Supr, arrastre y zoom: **10/10 con 0 errores**.
 - Captura del estado tras el recorrido: `docs/clon-interaccion.png`.
+- **Versión publicada** (`node tools/sizes.js <url>` y `node tools/interact.js <url>`):
+  las medidas de las 7 franjas coinciden con el original en los 7 tamaños, el
+  recorrido funcional pasa 10/10 y no hay errores de consola. Evidencia:
+  `docs/pages-1920x1080.png`.
 
 Requisitos de los scripts: `puppeteer` (en `/home/user/.cache/pptr` o el tuyo) y el
 servidor de desarrollo en `127.0.0.1:5173`.
