@@ -1,0 +1,2 @@
+# Este despliegue lo genera el bundle de Vite (npm run build).
+# La fuente vive en la rama main del repositorio.
